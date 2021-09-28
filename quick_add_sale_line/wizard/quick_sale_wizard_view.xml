@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="quick_sale_wizard_form_view" model="ir.ui.view">
+		<field name="name">quick.sale.wizard.form.view</field>
+		<field name="model">quick.sale.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<p>
+					Add the Product on Sale Order Lines Quickly.
+				</p>
+				<field name="wizard_line_ids">
+					<tree string="Sales Order Lines" editable="bottom">
+						<field name="product_id" />                        
+						<field name="layout_category_id" groups="sale.group_sale_layout"/>
+						<field name="quantity" />
+						<field name="price" />
+                        <field name="discount" groups="sale.group_discount_per_so_line"/>
+						<field name="sub_total" />
+					</tree>
+				</field>
+				<footer>
+					<button name="add_lines" string="Add Lines" type="object"
+						default_focus="1" class="oe_highlight" />
+					or
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="quick_sale_wizard_form_action">
+		<field name="name">Quick Sale Wizard</field>
+		<field name="res_model">quick.sale.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="quick_sale_wizard_form_view" />
+		<field name="target">new</field>
+	</record>
+
+</odoo>
